@@ -1,4 +1,5 @@
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
+import { formatNumber, formatCurrency } from "@/lib/formatters";
 import db from "@/db/db";
 
 async function getSalesData() {
@@ -16,18 +17,25 @@ export default async function AdminDashboard() {
     const salesData = await getSalesData()
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <DashBoardCard title="Sales" subtitle={salesData.numberOfSales} body={salesData.amount} />
+            <DashboardCard 
+            title="Sales" 
+            subtitle={`${formatNumber(salesData.numberOfSales)} Orders`} 
+            body={formatCurrency(salesData.amount)} />
+            <DashboardCard 
+            title="Customers" 
+            subtitle={`${formatCurrency()} Average Value`} 
+            body={formatNumber()} />
         </div>
     );
 }
 
-type DashBoardCardProps = {
+type DashboardCardProps = {
     title: string,
     subtitle: string,
     body: string,
 }
 
-function DashBoardCard({ title, subtitle, body }: DashBoardCardProps) {
+function DashboardCard({ title, subtitle, body }: DashboardCardProps) {
     return (
         <Card>
             <CardHeader>
