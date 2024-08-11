@@ -53,7 +53,7 @@ export function ProductForm() {
     )
 }
 
-function submitButton () {
-    const {pending} = useFormStatus()
-    return <Button type="submit" disabled={pending}>{pending ? "Saving... " : "save"}</Button>
+function SubmitButton () {
+    const { pending } = useFormStatus()
+    return <Button type="submit" disabled={ pending }>{ pending ? "Saving... " : "Save" }</Button>
 }
