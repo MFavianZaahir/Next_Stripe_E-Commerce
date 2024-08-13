@@ -8,11 +8,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
-import { addProduct } from "../../_actions/product";
+import { addProduct, updateProduct } from "../../_actions/products";
 import Image from "next/image";
 
 export function ProductForm({ product }: { product?: Product | null }) {
-    const [error, action] = useFormState(addProduct, {});
+    const [error, action] = useFormState(product == null ? addProduct : updateProduct.bind(null, product.id), {});
     const [priceInCents, setPriceInCents] = useState<number | undefined>(product?.priceInCents);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
 
