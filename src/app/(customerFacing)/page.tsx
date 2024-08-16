@@ -18,8 +18,8 @@ function getNewestProducts() {
 
 export default function HomePage() {
     return( <main className="spacey-y-12">
-        <ProductGridSection title="Popular" productsFetcher={getMostPopularProducts} />
-        <ProductGridSection title="Latest" productsFetcher={getNewestProducts} />
+        <ProductGridSection title="By Popular" productsFetcher={getMostPopularProducts} />
+        <ProductGridSection title="The Latest" productsFetcher={getNewestProducts} />
     </main>
     )
 }
