@@ -1,10 +1,11 @@
 import { ProductCard, ProductCardSkeleton } from "@/components/ProductCard";
+import { cache } from "@/lib/cache";
 import { Suspense } from "react";
 import { db } from "@/db/db";
 
-function getProducts() {
+const getProducts = cache(() => {
   return db.product.findMany({where: {isAvailable: true}, orderBy: {name:"asc"}});
-}
+}, ["/", "getProducts"])
 
 export default function ProductsPage() {
     return (
@@ -29,7 +30,7 @@ export default function ProductsPage() {
 
   async function ProductsSuspense() {
     const products = await getProducts();
-    return products.map((product) => (
+    return products.map(product => (
       <ProductCard key={product.id} {...product} />
     ));
   }
