@@ -3,10 +3,7 @@ import { NextRequest, NextResponse } from "next/server"
 import fs from "fs/promises"
 
 export async function GET(
-  req: NextRequest,
-  {
-    params: { downloadVerificationId },
-  }: { params: { downloadVerificationId: string } }
+  req: NextRequest, {params: { downloadVerificationId },}: { params: { downloadVerificationId: string } }
 ) {
   const data = await db.downloadVerification.findUnique({
     where: { id: downloadVerificationId, expiresAt: { gt: new Date() } },
